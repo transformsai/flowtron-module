@@ -8,7 +8,7 @@ setup(
     author_email="rafaelvalle@nvidia.com",
     url="https://transforms.ai/",
     package_dir={"": "src"},
-    packages=["flowtron"],
+    packages=["flowtron","flowtron.tacotron2","flowtron.tacotron2.waveglow"],
     install_requires=[
         "torch==1.7.1",
         "matplotlib==3.3.2",

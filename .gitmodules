@@ -1,0 +1,3 @@
+[submodule "src/flowtron"]
+	path = src/flowtron
+	url = https://github.com/transitional-forms-inc/flowtron.git

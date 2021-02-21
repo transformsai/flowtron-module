@@ -6,7 +6,6 @@ setup(
     description="Pipelining to allow using flowtron as a pip module",
     author="NVIDIA",
     author_email="rafaelvalle@nvidia.com",
-    url="https://transforms.ai/",
     package_dir={"": "src"},
     packages=["flowtron","flowtron.tacotron2","flowtron.tacotron2.waveglow"],
     install_requires=[

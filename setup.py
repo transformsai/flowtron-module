@@ -1,13 +1,17 @@
 from distutils.core import setup
 import os
+from typing import Any
 
-from setuptools import setup
+from setuptools import Distribution, setup
 from setuptools.command.develop import develop
 from setuptools.command.install import install
 
 
 class PreDevelopCommand(develop):
     """Pre-installation for development mode."""
+    def __init__(self, dist: Distribution, **kw:Any):
+        make_inits()
+        super().__init__(dist, **kw)
 
     def run(self):
         make_inits()
@@ -16,6 +20,10 @@ class PreDevelopCommand(develop):
 
 class PreInstallCommand(install):
     """Pre-installation for installation mode."""
+
+    def __init__(self, dist: Distribution) -> None:
+        make_inits()
+        super().__init__(dist)
 
     def run(self):
         make_inits()
@@ -41,7 +49,7 @@ def touch(path: str):
 
 setup(
     name="flowtron-module",
-    version="0.1.3",
+    version="0.1.4",
     description="Pipelining to allow using flowtron as a pip module",
     author="NVIDIA",
     author_email="rafaelvalle@nvidia.com",

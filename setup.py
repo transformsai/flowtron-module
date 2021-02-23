@@ -41,7 +41,7 @@ def touch(path: str):
 
 setup(
     name="flowtron-module",
-    version="0.1",
+    version="0.1.2",
     description="Pipelining to allow using flowtron as a pip module",
     author="NVIDIA",
     author_email="rafaelvalle@nvidia.com",

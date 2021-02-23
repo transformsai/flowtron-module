@@ -9,7 +9,8 @@ from setuptools.command.install import install
 
 class PreDevelopCommand(develop):
     """Pre-installation for development mode."""
-    def __init__(self, dist: Distribution, **kw:Any):
+
+    def __init__(self, dist: Distribution, **kw: Any):
         make_inits()
         super().__init__(dist, **kw)
 
@@ -17,6 +18,7 @@ class PreDevelopCommand(develop):
         make_inits()
         develop.run(self)
         make_inits()
+
 
 class PreInstallCommand(install):
     """Pre-installation for installation mode."""
@@ -29,6 +31,24 @@ class PreInstallCommand(install):
         make_inits()
         install.run(self)
         make_inits()
+
+
+try:
+    from wheel.bdist_wheel import bdist_wheel as _bdist_wheel
+
+    class bdist_wheel(_bdist_wheel):
+        def __init__(self, dist: Distribution) -> None:
+            make_inits()
+            super().__init__(dist)
+            
+        def finalize_options(self):
+            _bdist_wheel.finalize_options(self)
+            self.root_is_pure = False
+
+
+except ImportError:
+    bdist_wheel = None
+
 
 def make_inits():
     currentDir = os.path.dirname(__file__)
@@ -49,7 +69,7 @@ def touch(path: str):
 
 setup(
     name="flowtron-module",
-    version="0.1.4",
+    version="0.1.5",
     description="Pipelining to allow using flowtron as a pip module",
     author="NVIDIA",
     author_email="rafaelvalle@nvidia.com",
@@ -58,6 +78,7 @@ setup(
     cmdclass={
         "develop": PreDevelopCommand,
         "install": PreInstallCommand,
+        "bdist_wheel": bdist_wheel,
     },
     install_requires=[
         "torch==1.7.1",

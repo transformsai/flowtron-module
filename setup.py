@@ -12,7 +12,7 @@ class PreDevelopCommand(develop):
     def run(self):
         make_inits()
         develop.run(self)
-
+        make_inits()
 
 class PreInstallCommand(install):
     """Pre-installation for installation mode."""
@@ -20,7 +20,7 @@ class PreInstallCommand(install):
     def run(self):
         make_inits()
         install.run(self)
-
+        make_inits()
 
 def make_inits():
     currentDir = os.path.dirname(__file__)
@@ -41,7 +41,7 @@ def touch(path: str):
 
 setup(
     name="flowtron-module",
-    version="0.1.2",
+    version="0.1.3",
     description="Pipelining to allow using flowtron as a pip module",
     author="NVIDIA",
     author_email="rafaelvalle@nvidia.com",

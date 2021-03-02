@@ -40,7 +40,7 @@ try:
         def __init__(self, dist: Distribution) -> None:
             make_inits()
             super().__init__(dist)
-            
+
         def finalize_options(self):
             _bdist_wheel.finalize_options(self)
             self.root_is_pure = False
@@ -73,15 +73,19 @@ setup(
     author="NVIDIA",
     author_email="rafaelvalle@nvidia.com",
     package_dir={"": "src"},
-    packages=["flowtron", "flowtron.tacotron2","flowtron.text", "flowtron.tacotron2.waveglow"],
+    packages=[
+        "flowtron",
+        "flowtron.tacotron2",
+        "flowtron.text",
+        "flowtron.audio_processing",
+        "flowtron.tacotron2.waveglow",
+    ],
     cmdclass={
         "develop": PreDevelopCommand,
         "install": PreInstallCommand,
         "bdist_wheel": bdist_wheel,
     },
-    setup_requires=[
-        "wheel"
-    ],
+    setup_requires=["wheel"],
     install_requires=[
         "torch==1.7.1",
         "matplotlib==3.3.2",

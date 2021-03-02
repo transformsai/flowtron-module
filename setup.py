@@ -77,7 +77,6 @@ setup(
         "flowtron",
         "flowtron.tacotron2",
         "flowtron.text",
-        "flowtron.audio_processing",
         "flowtron.tacotron2.waveglow",
     ],
     cmdclass={

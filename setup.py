@@ -72,12 +72,17 @@ setup(
     description="Pipelining to allow using flowtron as a pip module",
     author="NVIDIA",
     author_email="rafaelvalle@nvidia.com",
-    package_dir={"": "src"},
+    package_dir={
+        "flowtron": "src/flowtron",
+        "text": "src/flowtron/text",
+        "tacotron2": "src/flowtron/tacotron2",
+        "waveglow": "src/flowtron/tacotron2/waveglow",
+        },
     packages=[
         "flowtron",
-        "flowtron.tacotron2",
-        "flowtron.text",
-        "flowtron.tacotron2.waveglow",
+        "tacotron2",
+        "text",
+        "waveglow",
     ],
     cmdclass={
         "develop": PreDevelopCommand,

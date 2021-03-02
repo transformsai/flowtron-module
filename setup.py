@@ -79,9 +79,9 @@ setup(
         "install": PreInstallCommand,
         "bdist_wheel": bdist_wheel,
     },
-    setup_requires={
+    setup_requires=[
         "wheel"
-    },
+    ],
     install_requires=[
         "torch==1.7.1",
         "matplotlib==3.3.2",

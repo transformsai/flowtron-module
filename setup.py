@@ -52,7 +52,6 @@ except ImportError:
 
 def make_inits():
     currentDir = os.path.dirname(__file__)
-    touch(os.path.join(currentDir, "cheem"))
     touch(os.path.join(currentDir, "./src/flowtron/__init__.py"))
     touch(os.path.join(currentDir, "./src/flowtron/tacotron2/__init__.py"))
     touch(os.path.join(currentDir, "./src/flowtron/tacotron2/waveglow/__init__.py"))
@@ -74,11 +73,14 @@ setup(
     author="NVIDIA",
     author_email="rafaelvalle@nvidia.com",
     package_dir={"": "src"},
-    packages=["flowtron", "flowtron.tacotron2", "flowtron.tacotron2.waveglow"],
+    packages=["flowtron", "flowtron.tacotron2","flowtron.text", "flowtron.tacotron2.waveglow"],
     cmdclass={
         "develop": PreDevelopCommand,
         "install": PreInstallCommand,
         "bdist_wheel": bdist_wheel,
+    },
+    setup_requires={
+        "wheel"
     },
     install_requires=[
         "torch==1.7.1",
